@@ -1,0 +1,23 @@
+<div class="login-container">
+  <h1>Entrar</h1>
+
+  <%= form_with url: login_path, local: true do |form| %>
+
+    <div class="field">
+      <%= form.label :email %><br>
+      <%= form.email_field :email, placeholder: "Seu e-mail", required: true %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password, "Senha" %><br>
+      <%= form.password_field :password, placeholder: "Sua senha", required: true %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Fazer Login" %>
+    </div>
+
+  <% end %>
+
+  <p>Não tem conta? <%= link_to "Cadastre-se aqui", signup_path %></p>
+</div>
