@@ -1,0 +1,18 @@
+<h1>Página Inicial</h1>
+
+<% if logged_in? %>
+  <div class="welcome-box">
+    <h2>Bem-vindo de volta, <%= current_user.name %>!</h2>
+    <p>Seu e-mail de acesso é: <%= current_user.email %></p>
+
+    <hr>
+
+    <%= button_to "Sair da conta", logout_path, method: :delete, data: { confirm: "Tem certeza?" }, class: "btn-logout" %>
+  </div>
+<% else %>
+  <div class="login-prompt">
+    <p>Você não está logado no sistema.</p>
+    <%= link_to "Entrar agora", login_path %> |
+    <%= link_to "Criar uma conta", signup_path %>
+  </div>
+<% end %>
