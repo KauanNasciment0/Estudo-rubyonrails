@@ -1,0 +1,18 @@
+<h1>Painel do Administrador - Lista de Usuários</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Nome</th>
+    <th>E-mail</th>
+    <th>Admin?</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr> <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.admin ? "Sim" : "Não" %></td>
+    </tr> <% end %>
+  </tbody>
+</table>
