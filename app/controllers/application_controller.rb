@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
       flash[:alert] = "Você precisa estar logado para acessar esta página."
       redirect_to login_path and return
 
-      elsif !current_user.admin?
+      elsif current_user.admin !=true
        flash[:alert] = "Acesso restrito a administradores."
         redirect_to root_path and return
 
