@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :index, :edit, :update] do
     member do
       patch :make_admin
+      patch :remove_admin
     end
   end
 

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_admin, only: [:index, :make_admin]
+  before_action :require_admin, only: [:index, :make_admin, :remove_admin]
   before_action :require_correct_user, only: [:edit, :update]
   def new
     @user = User.new
@@ -44,6 +44,15 @@ class UsersController < ApplicationController
       redirect_to users_path, notice: "Agora #{@user.name} é um administrador!"
     else
       redirect_to users_path, alert: "Não foi possível tornar este usuário admin."
+    end
+  end
+
+  def remove_admin
+    @user = User.find(params[:id])
+    if @user.update(admin: false)
+      redirect_to users_path, notice: "Poderes de administrador removidos de #{@user.name}."
+    else
+      redirect_to users_path, alert: "Não foi possível remover o acesso."
     end
   end
 

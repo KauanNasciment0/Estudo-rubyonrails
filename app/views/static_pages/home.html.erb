@@ -5,14 +5,20 @@
     <h2>Bem-vindo de volta, <%= current_user.name %>!</h2>
 
     <% if current_user.admin? %>
-      <div style="margin-bottom: 20px; padding: 10px; border: 1px solid red;">
+      <div style="margin-bottom: 20px; padding: 10px; border: 1px solid red; background-color: #fff5f5;">
         <strong>Painel de Controle:</strong>
-        <%= link_to "Gerenciar Usuários", users_path, class: "btn-admin" %>
+        <%= link_to "Gerenciar Todos os Usuários", users_path, class: "btn-admin" %>
       </div>
     <% end %>
 
-    <p>Seu e-mail de acesso é: <%= current_user.email %></p>
+    <div class="user-info">
+      <p>Seu e-mail de acesso é: <strong><%= current_user.email %></strong></p>
+
+      <%= link_to "Editar Meu Perfil", edit_user_path(current_user), class: "btn-edit-profile" %>
+    </div>
+
     <hr>
+
     <%= button_to "Sair da conta", logout_path, method: :delete, data: { confirm: "Tem certeza?" }, class: "btn-logout" %>
   </div>
 
