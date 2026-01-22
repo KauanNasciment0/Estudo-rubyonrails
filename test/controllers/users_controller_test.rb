@@ -6,8 +6,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get create" do
-    get users_create_url
+  test "should post create" do
+    post users_create_url, params: { user: { name: "Exemplo", email: "user@example.com", password: "password123" } }
+
     assert_response :success
   end
 end

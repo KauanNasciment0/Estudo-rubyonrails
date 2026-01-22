@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'static_pages/home', to: 'static_pages#home', as: :static_pages_home
-  get  'users/new',    to: 'users#new',    as: :users_new
-  post 'users/create', to: 'users#create', as: :users_create
+  get "static_pages/home", to: "static_pages#home", as: :static_pages_home
+  get  "users/new",    to: "users#new",    as: :users_new
+  post "users/create", to: "users#create", as: :users_create
 
   root "static_pages#home"
 
