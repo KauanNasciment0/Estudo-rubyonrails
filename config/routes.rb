@@ -2,14 +2,14 @@ Rails.application.routes.draw do
   root "static_pages#home"
 
   # Rotas de Autenticação (Login/Logout)
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
 
   # Rotas de Usuário
-  get 'cadastro', to: 'users#new', as: :signup
+  get "cadastro", to: "users#new", as: :signup
 
-  resources :users, only: [:create, :index, :edit, :update] do
+  resources :users, only: [ :create, :index, :edit, :update ] do
     member do
       patch :make_admin
       patch :remove_admin
