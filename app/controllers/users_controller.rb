@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_admin, only: [:index]
+  before_action :require_admin, only: [:index, :make_admin]
 
   def new
     @user = User.new
@@ -21,6 +21,15 @@ class UsersController < ApplicationController
     else
 
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def make_admin
+    @user = User.find(params[:id])
+    if @user.update(admin: true)
+      redirect_to users_path, notice: "Agora #{@user.name} é um administrador!"
+    else
+      redirect_to users_path, alert: "Não foi possível tornar este usuário admin."
     end
   end
 
