@@ -1,0 +1,31 @@
+<h1>Editar Perfil</h1>
+
+<%= form_with model: @user do |f| %>
+
+  <div>
+    <%= f.label :name, "Nome Completo" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :email, "E-mail" %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :password, "Nova Senha (deixe vazio para não alterar)" %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div>
+    <%= f.label :password_confirmation, "Confirme a Nova Senha" %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div>
+    <%= f.submit "Atualizar Conta" %>
+  </div>
+
+<% end %>
+
+<%= link_to "Cancelar", root_path %>

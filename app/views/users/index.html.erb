@@ -1,0 +1,36 @@
+<h1>Painel do Administrador</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Nome</th>
+    <th>E-mail</th>
+    <th>Status</th>
+    <th>Ações</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.admin ? "Admin" : "Usuário" %></td>
+      <td>
+        <%# Link para edição comum %>
+        <%= link_to "Editar", edit_user_path(user) %> |
+
+        <% if user.admin? %>
+          <%# Se já é admin, mostra o botão de remover (exceto para você mesmo!) %>
+          <% unless user == current_user %>
+            <%= button_to "Remover Admin", remove_admin_user_path(user), method: :patch, class: "btn-danger" %>
+          <% end %>
+        <% else %>
+          <%# Se não é admin, mostra o botão de promover %>
+          <%= button_to "Tornar Admin", make_admin_user_path(user), method: :patch, class: "btn-success" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to "Cancelar", root_path %>

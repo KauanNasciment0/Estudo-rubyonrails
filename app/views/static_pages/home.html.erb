@@ -3,12 +3,25 @@
 <% if logged_in? %>
   <div class="welcome-box">
     <h2>Bem-vindo de volta, <%= current_user.name %>!</h2>
-    <p>Seu e-mail de acesso é: <%= current_user.email %></p>
+
+    <% if current_user.admin? %>
+      <div style="margin-bottom: 20px; padding: 10px; border: 1px solid red; background-color: #fff5f5;">
+        <strong>Painel de Controle:</strong>
+        <%= link_to "Gerenciar Todos os Usuários", users_path, class: "btn-admin" %>
+      </div>
+    <% end %>
+
+    <div class="user-info">
+      <p>Seu e-mail de acesso é: <strong><%= current_user.email %></strong></p>
+
+      <%= link_to "Editar Meu Perfil", edit_user_path(current_user), class: "btn-edit-profile" %>
+    </div>
 
     <hr>
 
     <%= button_to "Sair da conta", logout_path, method: :delete, data: { confirm: "Tem certeza?" }, class: "btn-logout" %>
   </div>
+
 <% else %>
   <div class="login-prompt">
     <p>Você não está logado no sistema.</p>
