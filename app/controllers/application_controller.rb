@@ -36,4 +36,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_correct_user
+    @user = User.find(params[:id])
+
+    unless current_user == @user || current_user.admin?
+      flash[:alert] = "Você não tem permissão para editar este perfil."
+      redirect_to root_path and return
+    end
+  end
+
 end

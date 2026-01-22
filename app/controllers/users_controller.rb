@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_admin, only: [:index, :make_admin]
-
+  before_action :require_correct_user, only: [:edit, :update]
   def new
     @user = User.new
 
@@ -24,6 +24,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+
+    if @user.update(user_params)
+      redirect_to root_path, notice: "Perfil atualizado com sucesso!"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+
+  end
+
   def make_admin
     @user = User.find(params[:id])
     if @user.update(admin: true)
@@ -36,6 +50,13 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    allowed_params = [:name, :email, :password, :password_confirmation]
+
+    if current_user&.admin?
+      allowed_params << :admin
+    end
+
+    params.require(:user).permit(allowed_params)
   end
+
 end
