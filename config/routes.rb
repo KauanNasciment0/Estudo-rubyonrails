@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # Rotas de Usuário
   get 'cadastro', to: 'users#new', as: :signup
 
-  resources :users, only: [:create, :index] do
+  resources :users, only: [:create, :index, :edit, :update] do
     member do
       patch :make_admin
     end
