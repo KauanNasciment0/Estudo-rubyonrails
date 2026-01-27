@@ -26,6 +26,9 @@
     <%= f.submit "Atualizar Conta" %>
   </div>
 
+  <div>
+    <%= button_to "Excluir Conta", @user, method: :delete, data: { confirm: "Tem certeza?" } %>
+  </div>
 <% end %>
 
 <%= link_to "Cancelar", root_path %>

@@ -30,6 +30,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    if current_user == @user || current_user.admin? && !@user.admin?
+      @user.destroy
+      if current_user == @user
+        reset_session
+        redirect_to root_url, notice: "Sua conta foi excluída"
+      else
+        redirect_to users_path, notice: "Usuário removido com sucesso!"
+      end
+    else
+      redirect_to root_path, alert: "Você não tem permissão para excluir administradores."
+    end
+  end
+
   def make_admin
     @user = User.find(params[:id])
     if @user.update(admin: true)
