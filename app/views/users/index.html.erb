@@ -28,8 +28,8 @@
       </td>
       <td>
         <%= button_to "Excluir", user,
-                      data: { turbo_method: :delete, turbo_confirm: "Deseja apagar #{user.name}?" },
-                      class: "btn-delete" %>
+                      method: :delete,
+                      form: { data: { turbo_confirm:"Deseja apagar #{user.name}?" } } %>
       </td>
     </tr>
   <% end %>
