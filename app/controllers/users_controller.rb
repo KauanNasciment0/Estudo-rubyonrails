@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_admin, only: [ :index, :make_admin, :remove_admin ]
-  before_action :require_correct_user, only: [ :edit, :update ]
+  before_action :require_correct_user, only: [ :edit, :update, :destroy ]
   def new
     @user = User.new
   end

@@ -25,10 +25,10 @@
   <div>
     <%= f.submit "Atualizar Conta" %>
   </div>
-
-  <div>
-    <%= button_to "Excluir Conta", @user, method: :delete, data: { confirm: "Tem certeza?" } %>
-  </div>
 <% end %>
-
+<div class="danger-zone">
+  <%= button_to "Excluir minha conta", @user,
+                data: { turbo_method: :delete, turbo_confirm: "Tem certeza absoluta?" },
+                class: "btn-danger" %>
+</div>
 <%= link_to "Cancelar", root_path %>
